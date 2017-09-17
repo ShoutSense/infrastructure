@@ -5,6 +5,10 @@ variable account_id {}
 variable role {}
 
 ### OBJECT VARS ###
+variable object_count {
+  default = 1
+}
+
 variable target_bucket_name {}
 
 variable path_to_upload {}
