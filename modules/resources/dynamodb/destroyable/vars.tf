@@ -1,6 +1,5 @@
-variable region {
-  description = "The region on which to host the s3 buckets"
-}
+### PROVIDER VARS ###
+variable region {}
 
 variable account_id {}
 
