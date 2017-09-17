@@ -21,27 +21,26 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     prefix          = "${var.logging_file_prefix}"
   }
 
-#/ TODO
   default_cache_behavior {
-    allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
-    cached_methods   = ["GET", "HEAD"]
-    target_origin_id = "myS3Origin"
+    allowed_methods  = ["${var.allowed_http_methods}"]
+    cached_methods   = ["${var.cached_http_methods}"]
+    target_origin_id = "${var.origin_id}"
 
     forwarded_values {
-      query_string = false
+      query_string = "${var.forward_query_string}"
 
       cookies {
-        forward = "none"
+        forward = "${var.forward_cookies}"
+        whitelisted_names = ["${var.forwarded_cookies_whitelisted_names}"]
       }
     }
 
-    viewer_protocol_policy = "allow-all"
-    min_ttl                = 0
-    default_ttl            = 3600
-    max_ttl                = 86400
+    viewer_protocol_policy = "${var.viewer_protocol_policy}"
+    min_ttl                = "${var.cache_min_ttl}"
+    default_ttl            = "${var.cache_default_ttl}"
+    max_ttl                = "${var.cache_max_ttl}"
   }
 
-#/
   restrictions {
     geo_restriction {
       restriction_type = "${var.geo_restriction_type}"

@@ -52,6 +52,43 @@ variable logging_file_prefix {
   default = ""
 }
 
+variable allowed_http_methods {
+  type = "list"
+}
+
+variable cached_http_methods {
+  type = "list"
+}
+
+variable forward_query_string {}
+
+variable forward_cookies {
+  description = "You can specify 'all', 'none' or 'whitelist'. If 'whitelist', you must include the subsequent forwarded_cookies_whitelisted_names"
+}
+
+variable forwarded_cookies_whitelisted_names {
+  default = []
+}
+
+variable viewer_protocol_policy {
+  #default = "allow-all"
+}
+
+variable cache_min_ttl {
+  default = 0
+  description = "The minimum amount of time that you want objects to stay in CloudFront caches before CloudFront queries your origin to see whether the object has been updated."
+}
+
+variable cache_default_ttl {
+  default = 3600
+  description = "The default amount of time (in seconds) that an object is in a CloudFront cache before CloudFront forwards another request in the absence of an Cache-Control max-age or Expires header."
+}
+
+variable cache_max_ttl {
+  default = 86400
+  description = "The maximum amount of time (in seconds) that an object is in a CloudFront cache before CloudFront forwards another request to your origin to determine whether the object has been updated."
+}
+
 variable tags {
   type    = "map"
   default = {}
