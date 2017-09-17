@@ -1,4 +1,5 @@
 provider "aws" {
+  profile = "ShoutSense"
   region = "${var.region}"
 
   assume_role {
