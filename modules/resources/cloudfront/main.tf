@@ -13,14 +13,15 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   comment             = "${var.distribution_comment}"
   default_root_object = "${var.default_root_object}"
   aliases             = ["${var.aliases}"]
+  price_class         = "${var.price_class}"
 
-#/ TODO
   logging_config {
-    include_cookies = false
-    bucket          = "mylogs.s3.amazonaws.com"
-    prefix          = "myprefix"
+    include_cookies = "${var.include_cookies}"
+    bucket          = "${var.access_log_bucket_name}"
+    prefix          = "${var.logging_file_prefix}"
   }
 
+#/ TODO
   default_cache_behavior {
     allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
     cached_methods   = ["GET", "HEAD"]
@@ -40,16 +41,13 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     max_ttl                = 86400
   }
 
-  price_class = "PriceClass_200"
-
+#/
   restrictions {
     geo_restriction {
-      restriction_type = "whitelist"
-      locations        = ["US", "CA", "GB", "DE"]
+      restriction_type = "${var.geo_restriction_type}"
+      locations        = ["${var.geo_restiction_locations}"]
     }
   }
-
-  #\
 
   tags = "${var.tags}"
 
