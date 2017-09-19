@@ -1,3 +1,3 @@
-# output "test_bucket_name" {
-#   value = "${module.s3_test_bucket.bucket_name}"
-# }
+output "bucket_name" {
+  value = "${module.s3_with_upload_test.bucket_name}"
+}

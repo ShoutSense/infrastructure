@@ -1,4 +1,4 @@
-module "s3_with_upload_test" {
+module "dist_access_log_bucket" {
   source                      = "../../../../modules/components/s3"
   # Provider
   region                      = "${var.region}"
@@ -35,6 +35,6 @@ module "cloudfront_distribution" {
   geo_restriction_locations   = "${var.dist_geo_restriction_locations}"
   price_class                 = "${var.dist_price_class}"
   include_cookies             = "${var.dist_include_cookies}"
-  access_log_bucket_name      = "${var.dist_access_log_bucket_name}"
+  access_log_bucket_name      = "${module.dist_access_log_bucket.bucket_name}"
   logging_file_prefix         = "${var.log_bucket_logging_file_prefix}"
 }
