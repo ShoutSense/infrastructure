@@ -3,7 +3,7 @@ module "campaigns_table" {
   region              = "${var.aws_region}"
   account_id          = "${var.aws_account_id}"
   role                = "${var.aws_role}"
-  environment         = "dev"
+  environment_type    = "dev"
   table_name          = "campaigns"
   hash_key            = "campaignId"
   read_capacity       = "${var.campaigns_table_read_capacity}"

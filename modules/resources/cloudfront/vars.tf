@@ -68,6 +68,7 @@ variable forward_cookies {
 
 variable forwarded_cookies_whitelisted_names {
   default = []
+  type = "list"
 }
 
 variable viewer_protocol_policy {
