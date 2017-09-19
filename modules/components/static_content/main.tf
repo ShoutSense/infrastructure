@@ -11,7 +11,7 @@ module "dist_access_log_bucket" {
     Environment               = "${var.environment_type}"
   }
   # Uploads
-  upload_count                = "${access_log_bucket_file_upload_count}"
+  upload_count                = "${var.access_log_bucket_file_upload_count}"
   source_path_to_file_list    = ["${var.log_bucket_file_upload_source_paths}"]
   path_to_upload_list         = ["${var.log_bucket_key_upload_paths}"]
 }
