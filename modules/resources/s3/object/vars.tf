@@ -11,6 +11,10 @@ variable object_count {
 
 variable target_bucket_name {}
 
-variable path_to_upload {}
+variable path_to_upload_list {
+  type = "list"
+}
 
-variable source_path_to_file {}
+variable source_path_to_file_list {
+  type = "list"
+}

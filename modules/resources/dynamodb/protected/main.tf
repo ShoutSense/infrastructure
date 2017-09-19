@@ -14,7 +14,7 @@ resource "aws_dynamodb_table" "dynamodb-table-template-protected" {
   }
 
   tags {
-    Environment     = "${var.environment}"
+    Environment     = "${var.environment_type}"
   }
 
   lifecycle {

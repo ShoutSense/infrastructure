@@ -46,4 +46,4 @@ variable enable_ttl {
   default     = false
 }
 
-variable environment {}
+variable environment_type {}
