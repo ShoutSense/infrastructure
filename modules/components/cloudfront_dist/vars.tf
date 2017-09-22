@@ -28,6 +28,11 @@ variable log_bucket_key_upload_paths {
   type = "list"
 }
 
+### CF ORIGIN ACCESS IDENTITY VARS ###
+variable OAI_comment {
+  default = ""
+}
+
 ### CLOUDFRONT VARS ###
 variable dist_origin_domain_name {}
 
@@ -87,4 +92,45 @@ variable dist_forward_cookies_type {
 variable dist_forwarded_cookies_whitelisted_names {
   default = []
   type = "list"
+}
+
+variable dist_viewer_protocol_policy {
+  default = "allow-all"
+}
+
+variable dist_cache_min_ttl {
+  default = 0
+  description = "The minimum amount of time that you want objects to stay in CloudFront caches before CloudFront queries your origin to see whether the object has been updated."
+}
+
+variable dist_cache_default_ttl {
+  default = 3600
+  description = "The default amount of time (in seconds) that an object is in a CloudFront cache before CloudFront forwards another request in the absence of an Cache-Control max-age or Expires header."
+}
+
+variable dist_cache_max_ttl {
+  default = 86400
+  description = "The maximum amount of time (in seconds) that an object is in a CloudFront cache before CloudFront forwards another request to your origin to determine whether the object has been updated."
+}
+
+variable dist_cf_default_certificate {
+  default = true
+}
+
+variable dist_acm_certificate_arn {
+  default = ""
+}
+
+variable dist_iam_certificate_id {
+  default = ""
+}
+
+variable dist_cert_ssl_support_method {
+  description "Either 'vip' or 'sni-only'."
+  default = "sni-only"
+}
+
+variable dist_tags {
+  type    = "map"
+  default = {}
 }

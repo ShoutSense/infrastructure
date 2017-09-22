@@ -7,15 +7,24 @@ module "dist_access_log_bucket" {
   # Bucket
   bucket_name                 = "${var.dist_access_log_bucket_name}"
   force_destroy               = "${var.force_destroy_bucket}"
-  tags                        = {
-    Environment               = "${var.environment_type}"
-  }
   # Uploads
   upload_count                = "${var.access_log_bucket_file_upload_count}"
   source_path_to_file_list    = ["${var.log_bucket_file_upload_source_paths}"]
   path_to_upload_list         = ["${var.log_bucket_key_upload_paths}"]
+  tags                        = {
+    Environment               = "${var.environment_type}"
+  }
 }
 
+module "cloudfront_OAI" {
+  source                      = "../../resources/cloudfront/origin_access_identity"
+  # Provider
+  region                      = "${var.region}"
+  role                        = "${var.role}"
+  account_id                  = "${var.account_id}"
+  # origin_access_identity
+  identity_comment            = "${var.OAI_comment}"
+}
 
 module "cloudfront_distribution" {
   source                      = "../../resources/cloudfront"
@@ -45,4 +54,17 @@ module "cloudfront_distribution" {
   forward_query_string        = "${var.dist_forward_query_string}"
   forward_cookies             = "${var.dist_forward_cookies_type}"
   forwarded_cookies_whitelisted_names = ["${var.dist_forwarded_cookies_whitelisted_names}"]
+  viewer_protocol_policy      = "${var.dist_viewer_protocol_policy}"
+  ## cache vals
+  cache_min_ttl               = "${var.dist_cache_min_ttl}"
+  cache_default_ttl           = "${var.dist_cache_default_ttl}"
+  cache_max_ttl               = "${var.dist_cache_max_ttl}"
+  ## certificates
+  cf_default_certificate      = "${var.dist_cf_default_certificate}"
+  acm_certificate_arn         = "${var.dist_acm_certificate_arn}"
+  iam_certificate_id          = "${var.dist_iam_certificate_id}"
+  ssl_support_method          = "${var.dist_cert_ssl_support_method}"
+  tags                        = {
+    Environment = "${var.environment_type}"
+  }
 }
