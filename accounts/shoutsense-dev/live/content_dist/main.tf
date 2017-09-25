@@ -5,7 +5,7 @@ module "s3_website_content_upload" {
   role                     = "${var.aws_role}"
   object_count             = ""
   target_bucket_name       = ""
-  path_to_upload_list      = [""]
+  path_to_upload_list      = ["${var.env_name}/"]
   source_path_to_file_list = [""]
   #### MAKE OUTPUT HAVE A BOOLEAN VALUE CALLED 'IS_UPLOADED' SO THAT WHEN IT'S
   #### UPLOADED THE DIST WILL BE CREATED ???
