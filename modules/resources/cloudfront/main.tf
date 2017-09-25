@@ -15,6 +15,8 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   aliases             = ["${var.aliases}"]
   price_class         = "${var.price_class}"
 
+  lambda_function_association = "${var.lambda_function_association_list}"
+
   logging_config {
     include_cookies = "${var.include_cookies}"
     bucket          = "${var.access_log_bucket_name}"

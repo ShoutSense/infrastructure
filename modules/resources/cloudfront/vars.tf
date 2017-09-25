@@ -43,6 +43,12 @@ variable price_class {
   description = "One of 'PriceClass_All', 'PriceClass_200', or 'PriceClass_100'."
 }
 
+variable lambda_function_association_list {
+  description = "List of lambda map-blocks. Refer to terraform cloudfront_distribution page for block configuration."
+  default = []
+  type = "list"
+}
+
 variable include_cookies {}
 
 variable access_log_bucket_name {}
@@ -72,6 +78,7 @@ variable forwarded_cookies_whitelisted_names {
 }
 
 variable viewer_protocol_policy {
+  description = "One of 'allow-all', 'https-only', or 'redirect-to-https'."
   #default = "allow-all"
 }
 
